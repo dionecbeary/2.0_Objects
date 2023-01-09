@@ -97,10 +97,37 @@ public class BasicGameApp implements Runnable {
 		}
 	}
 
+	public void crash(){
+		if(astro.rec.intersects(astro2.rec))
+		{
+			System.out.print("crash");
+			astro.dx = -astro.dx;
+			astro.dy = -astro.dy;
+			astro2.dx = -astro2.dx;
+			astro2.dy = -astro2.dy;
+		}
+//		if(astro.rec.intersects(cat.rec))
+//		{
+//			System.out.print("crash");
+//			astro.dx = -astro.dx;
+//			astro.dy = -astro.dy;
+//			cat.dx = -cat.dx;
+//			cat.dy = -cat.dy;
+//		}
+//		if(astro2.rec.intersects(cat.rec))
+//		{
+//			System.out.print("crash");
+//			astro2.dx = -astro2.dx;
+//			astro2.dy = -astro2.dy;
+//			cat.dx = -cat.dx;
+//			cat.dy = -cat.dy;
+//		}
+	}
 
 	public void moveThings()
 	{
       //calls the move( ) code in the objects
+		crash();
 		astro.move();
 		astro.bounce();
 		astro2.move();
