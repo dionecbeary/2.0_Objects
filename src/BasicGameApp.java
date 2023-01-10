@@ -72,9 +72,9 @@ public class BasicGameApp implements Runnable {
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
 		catPic = Toolkit.getDefaultToolkit().getImage("Meowth.png");
 		background = Toolkit.getDefaultToolkit().getImage("background.jpeg");
-		astro = new Astronaut(10,100,5,3);
-		astro2 = new Astronaut(100,100,3,5);
-		cat = new Astronaut(0,0,3,3);
+		astro = new Astronaut(10,300,2,-2);
+		astro2 = new Astronaut(200,100,3,3);
+		cat = new Astronaut(500,500,-5,4);
 
 	}// BasicGameApp()
 
@@ -106,22 +106,18 @@ public class BasicGameApp implements Runnable {
 			astro2.dx = -astro2.dx;
 			astro2.dy = -astro2.dy;
 		}
-//		if(astro.rec.intersects(cat.rec))
-//		{
-//			System.out.print("crash");
-//			astro.dx = -astro.dx;
-//			astro.dy = -astro.dy;
-//			cat.dx = -cat.dx;
-//			cat.dy = -cat.dy;
-//		}
-//		if(astro2.rec.intersects(cat.rec))
-//		{
-//			System.out.print("crash");
-//			astro2.dx = -astro2.dx;
-//			astro2.dy = -astro2.dy;
-//			cat.dx = -cat.dx;
-//			cat.dy = -cat.dy;
-//		}
+		if(astro.rec.intersects(cat.rec))
+		{
+			System.out.print("crash");
+			cat.width -= 1;
+			cat.height -= 1;
+		}
+		if(astro2.rec.intersects(cat.rec))
+		{
+			System.out.print("crash");
+			cat.width += 3;
+			cat.height += 3;
+		}
 	}
 
 	public void moveThings()
