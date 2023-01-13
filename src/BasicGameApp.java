@@ -98,7 +98,7 @@ public class BasicGameApp implements Runnable {
 	}
 
 	public void crash(){
-		if(astro.rec.intersects(astro2.rec))
+		if(astro.rec.intersects(astro2.rec) && astro.isAlive == true && astro2.isAlive == true)
 		{
 			System.out.print("crash");
 			astro.dx = -astro.dx;
@@ -111,12 +111,14 @@ public class BasicGameApp implements Runnable {
 			System.out.print("crash");
 			cat.width -= 1;
 			cat.height -= 1;
+			astro.isAlive = false;
 		}
 		if(astro2.rec.intersects(cat.rec))
 		{
 			System.out.print("crash");
 			cat.width += 3;
 			cat.height += 3;
+			astro2.isAlive = false;
 		}
 	}
 
@@ -183,11 +185,18 @@ public class BasicGameApp implements Runnable {
 
       //draw the image of the astronaut
 		g.drawImage(background, 0, 0, 1000, 700, null);
-		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
-		g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+		if (astro.isAlive == true){
+			g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
+			g.draw(new Rectangle(astro.xpos, astro.ypos, astro.width, astro.height));
+		}
+		if (astro2.isAlive == true){
+			g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+			g.draw(new Rectangle(astro2.xpos, astro2.ypos, astro2.width, astro2.height));
+		}
 		g.drawImage(catPic, cat.xpos, cat.ypos, cat.width, cat.height, null);
-		g.draw(new Rectangle(astro.xpos, astro.ypos, astro.width, astro.height));
-		g.draw(new Rectangle(astro2.xpos, astro2.ypos, astro2.width, astro2.height));
+		if (astro.isAlive == true || astro2.isAlive){
+
+		}
 		g.draw(new Rectangle(cat.xpos, cat.ypos, cat.width, cat.height));
 		g.dispose();
 
